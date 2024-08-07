@@ -2,6 +2,7 @@
   "expo": {
     "name": "desafio-preco-justo",
     "slug": "desafio-preco-justo",
+    "scheme": "desafio-preco-justo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,6 +20,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#7B22D3"
       }
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
