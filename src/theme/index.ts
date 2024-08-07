@@ -8,7 +8,7 @@ export const theme = {
     xs: 12,
     sm: 14,
     base: 16,
-    lg: 20,
+    lg: 18,
     xl: 24,
     xxl: 28,
   },

@@ -1,15 +1,18 @@
-import { StatusBar } from 'expo-status-bar'
+import { Redirect } from 'expo-router'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { theme } from '@/theme'
 
 export default function Page() {
+  const boolean = true
+
+  if (boolean) {
+    return <Redirect href="/sign-in" />
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Expo Router</Text>
-      <Text style={styles.subtitle}>Hello world!</Text>
-
-      <StatusBar style="auto" />
+      <Text style={styles.title}>Turn it into tabs</Text>
     </View>
   )
 }
@@ -17,18 +20,12 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.black,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   title: {
     fontFamily: theme.fontFamily.semibold,
-    color: theme.colors.neutral[100],
-  },
-
-  subtitle: {
-    fontFamily: theme.fontFamily.regular,
     color: theme.colors.neutral[100],
   },
 })
