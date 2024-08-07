@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
 
+import { theme } from '@/theme'
+
 export default function Page() {
   return (
     <View style={styles.container}>
-      <Text>Welcome to Expo Router</Text>
-      <Text>Hello world!</Text>
+      <Text style={styles.title}>Welcome to Expo Router</Text>
+      <Text style={styles.subtitle}>Hello world!</Text>
+
       <StatusBar style="auto" />
     </View>
   )
@@ -14,8 +17,18 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.black,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  title: {
+    fontFamily: theme.fontFamily.semibold,
+    color: theme.colors.neutral[100],
+  },
+
+  subtitle: {
+    fontFamily: theme.fontFamily.regular,
+    color: theme.colors.neutral[100],
   },
 })
