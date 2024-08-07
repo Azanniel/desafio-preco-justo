@@ -1,7 +1,9 @@
 {
   "name": "desafio-preco-justo",
+  "description": "Uma aplicação desenvolvida para um teste técnico onde o usuário possa comprar produtos e receber notificações quando a compra for confirmada.",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
+  "private": true,
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -18,6 +20,5 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.45",
     "typescript": "^5.1.3"
-  },
-  "private": true
+  }
 }
