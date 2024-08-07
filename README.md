@@ -4,6 +4,8 @@
   </h1>
 
   > Um aplicativo mobile que permita aos usuários comprar produtos e receber notificações quando for confirmada a compra.
+
+  ![image](https://github.com/user-attachments/assets/68e7c043-d08b-40d5-9876-5dab8ca8d82e)
 </div>
 
 ## 🎃 Desafio
