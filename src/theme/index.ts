@@ -4,7 +4,6 @@ export const theme = {
     semibold: 'Sora_600SemiBold',
   },
   fontSize: {
-    xxs: 10,
     xs: 12,
     sm: 14,
     base: 16,
