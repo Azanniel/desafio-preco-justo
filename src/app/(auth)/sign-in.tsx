@@ -1,5 +1,5 @@
 import { Feather } from '@expo/vector-icons'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -52,7 +52,7 @@ export default function SignIn() {
             />
           </InputRoot>
 
-          <Button>
+          <Button onPress={() => router.push('/')}>
             <ButtonTitle>Entrar</ButtonTitle>
           </Button>
 

@@ -1,18 +1,11 @@
-import { Redirect } from 'expo-router'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { theme } from '@/theme'
 
-export default function Page() {
-  const boolean = true
-
-  if (boolean) {
-    return <Redirect href="/sign-in" />
-  }
-
+export default function Home() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Turn it into tabs</Text>
+      <Text style={styles.title}>Home</Text>
     </View>
   )
 }
@@ -26,6 +19,5 @@ const styles = StyleSheet.create({
 
   title: {
     fontFamily: theme.fontFamily.semibold,
-    color: theme.colors.neutral[100],
   },
 })

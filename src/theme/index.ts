@@ -40,6 +40,7 @@ export const theme = {
       300: '#b9b9b9',
       200: '#8d8d8d',
       100: '#f9f9f9',
+      50: '#f1f1f1',
     },
   },
 } as const
