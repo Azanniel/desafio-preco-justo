@@ -1,13 +1,24 @@
 import AntDesign from '@expo/vector-icons/AntDesign'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import {
+  Image,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native'
 
 import { theme } from '@/theme'
 
 import { Button } from './ui/button'
 
-export function ProductCard() {
+interface ProductCardProps {
+  containerCardStyle?: StyleProp<ViewStyle>
+}
+
+export function ProductCard(props: ProductCardProps) {
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, props.containerCardStyle]}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
