@@ -1,7 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
 import { router } from 'expo-router'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import {
   MenuAction,
@@ -15,7 +15,11 @@ import { theme } from '@/theme'
 export default function Profile() {
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView
+        contentContainerStyle={{ minHeight: Dimensions.get('window').height }}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
         <View style={styles.header}>
           <Avatar size={96}>
             <AvatarFallback>LA</AvatarFallback>

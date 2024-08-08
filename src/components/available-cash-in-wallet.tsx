@@ -23,7 +23,9 @@ export function AvailableCashInWallet() {
         <Text style={styles.title}>R$ 50.000</Text>
       </View>
 
-      <Separator orientation="vertical" />
+      <View style={{ marginLeft: 'auto', marginRight: 16 }}>
+        <Separator orientation="vertical" size={2} color="#3131311A" />
+      </View>
 
       <Link href="/shop" asChild>
         <Pressable style={styles.item}>
@@ -48,7 +50,6 @@ const styles = StyleSheet.create({
 
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
 
     paddingHorizontal: 16,
 

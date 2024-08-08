@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
   brand: {
     backgroundColor: theme.colors.neutral[900],
     borderRadius: theme.borderRadius.lg,
+
+    justifyContent: 'center',
+    alignItems: 'center',
+
     paddingHorizontal: 24,
     paddingVertical: 8,
   },
