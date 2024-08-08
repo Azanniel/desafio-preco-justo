@@ -8,12 +8,14 @@ import {
 
 import { theme } from '@/theme'
 
-interface ButtonRootProps extends TouchableOpacityProps {}
+interface ButtonRootProps extends TouchableOpacityProps {
+  variant?: 'base' | 'icon'
+}
 
-function ButtonRoot({ style, ...props }: ButtonRootProps) {
+function ButtonRoot({ style, variant = 'base', ...props }: ButtonRootProps) {
   return (
     <TouchableOpacity
-      style={[styles.root, style]}
+      style={[styles.root, variant === 'icon' && styles.icon, style]}
       activeOpacity={0.8}
       {...props}
     />
@@ -34,6 +36,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: theme.borderRadius.lg,
+  },
+
+  icon: {
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+
+    borderRadius: 10,
   },
 
   title: {

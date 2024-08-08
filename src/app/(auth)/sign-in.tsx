@@ -11,10 +11,10 @@ import {
 } from 'react-native'
 
 import { Brand } from '@/components/brand'
-import { Button, ButtonTitle } from '@/components/button'
-import { Input, InputRoot } from '@/components/input'
-import { Separator } from '@/components/separator'
-import { WalletIcon } from '@/components/wallet-icon'
+import { WalletIcon } from '@/components/icons/wallet-icon'
+import { Button, ButtonTitle } from '@/components/ui/button'
+import { Input, InputRoot } from '@/components/ui/input'
+import { Separator } from '@/components/ui/separator'
 import { theme } from '@/theme'
 
 export default function SignIn() {

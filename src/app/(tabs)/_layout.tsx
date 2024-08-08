@@ -2,9 +2,9 @@ import { Tabs } from 'expo-router'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { BagIcon } from '@/components/bag-icon'
-import { HomeIcon } from '@/components/home-icon'
-import { UserIcon } from '@/components/user-icon'
+import { BagIcon } from '@/components/icons/bag-icon'
+import { HomeIcon } from '@/components/icons/home-icon'
+import { UserIcon } from '@/components/icons/user-icon'
 import { theme } from '@/theme'
 
 export default function TabsLayout() {

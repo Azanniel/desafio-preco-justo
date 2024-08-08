@@ -2,10 +2,16 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { theme } from '@/theme'
 
-export function Brand() {
+interface BrandProps {
+  size?: 'sm' | 'base'
+}
+
+export function Brand({ size = 'base' }: BrandProps) {
   return (
-    <View style={styles.brand}>
-      <Text style={styles.brandText}>Shopping Coins</Text>
+    <View style={[styles.brand, size === 'sm' && styles.brandSm]}>
+      <Text style={[styles.brandText, size === 'sm' && styles.brandTextSm]}>
+        Shopping Coins
+      </Text>
     </View>
   )
 }
@@ -18,9 +24,21 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
 
+  brandSm: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+
   brandText: {
+    textAlign: 'center',
     fontFamily: theme.fontFamily.semibold,
     color: theme.colors.neutral[100],
     fontSize: theme.fontSize.xl,
+  },
+
+  brandTextSm: {
+    fontFamily: theme.fontFamily.semibold,
+    color: theme.colors.neutral[100],
+    fontSize: theme.fontSize.sm,
   },
 })

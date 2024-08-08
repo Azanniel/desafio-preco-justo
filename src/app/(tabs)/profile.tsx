@@ -1,7 +1,7 @@
 import { router } from 'expo-router'
 import { StyleSheet, Text, View } from 'react-native'
 
-import { Button, ButtonTitle } from '@/components/button'
+import { Button, ButtonTitle } from '@/components/ui/button'
 
 export default function Profile() {
   return (
