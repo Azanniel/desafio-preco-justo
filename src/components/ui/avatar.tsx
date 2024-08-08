@@ -9,6 +9,9 @@ import {
 
 import { theme } from '@/theme'
 
+const AVATAR_DEFAULT_SIZE = 44
+const AVATAR_DEFAULT_RADIUS = theme.borderRadius.base
+
 interface AvatarProps {
   size?: number
   children?: React.ReactNode
@@ -17,9 +20,26 @@ interface AvatarProps {
 function Avatar({ size, ...props }: AvatarProps) {
   return (
     <View
-      style={[styles.avatar, !!size && { width: size, height: size }]}
-      {...props}
-    />
+      style={[
+        styles.avatar,
+        !!size && {
+          width: size,
+          height: size,
+          borderRadius: size / (AVATAR_DEFAULT_RADIUS / 4),
+        },
+      ]}
+    >
+      <View
+        style={[
+          styles.outline,
+          !!size && {
+            borderRadius: size / (AVATAR_DEFAULT_RADIUS / 4),
+            borderWidth: size / (AVATAR_DEFAULT_SIZE / 2),
+          },
+        ]}
+      />
+      {props.children}
+    </View>
   )
 }
 
@@ -40,19 +60,29 @@ export { Avatar, AvatarFallback, AvatarImage }
 const styles = StyleSheet.create({
   avatar: {
     position: 'relative',
-    width: 44,
-    height: 44,
+    width: AVATAR_DEFAULT_SIZE,
+    height: AVATAR_DEFAULT_SIZE,
 
     justifyContent: 'center',
     alignItems: 'center',
-    flexShrink: 0,
 
     backgroundColor: theme.colors.neutral[300],
-    borderRadius: theme.borderRadius.base,
-    borderWidth: 1,
-    borderColor: '#f9f9f966',
+    borderRadius: AVATAR_DEFAULT_RADIUS,
 
     overflow: 'hidden',
+  },
+
+  outline: {
+    width: '100%',
+    height: '100%',
+
+    backgroundColor: 'transparent',
+    borderColor: '#F8F8F866',
+    borderWidth: 1,
+    borderRadius: AVATAR_DEFAULT_RADIUS,
+
+    position: 'absolute',
+    zIndex: 10,
   },
 
   fallback: {

@@ -22,7 +22,7 @@ export function ProductCard(props: ProductCardProps) {
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={{ uri: 'https://loremflickr.com/200/200/laptop' }}
+          source={{ uri: 'https://picsum.photos/200' }}
           alt=""
         />
       </View>
