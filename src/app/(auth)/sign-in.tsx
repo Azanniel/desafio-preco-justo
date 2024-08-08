@@ -1,22 +1,22 @@
 import { Feather } from '@expo/vector-icons'
 import {
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { WalletIcon } from '@/components/wallet-icon'
 import { theme } from '@/theme'
 
 export default function SignIn() {
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={false}
-      bounces={false}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View style={styles.logoContainer}>
         <WalletIcon width={96} height={95} />
@@ -54,7 +54,7 @@ export default function SignIn() {
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
-    </KeyboardAwareScrollView>
+    </KeyboardAvoidingView>
   )
 }
 
@@ -64,7 +64,9 @@ const styles = StyleSheet.create({
   },
 
   logoContainer: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 16,
     marginVertical: 48,
   },
@@ -83,13 +85,13 @@ const styles = StyleSheet.create({
   },
 
   form: {
-    flex: 1,
     alignItems: 'center',
     gap: 24,
     backgroundColor: theme.colors.neutral[100],
     borderTopLeftRadius: theme.borderRadius.lg,
     borderTopRightRadius: theme.borderRadius.lg,
     padding: 32,
+    paddingBottom: 64,
   },
 
   title: {
