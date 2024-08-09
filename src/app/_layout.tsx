@@ -12,6 +12,7 @@ import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { SessionProvider } from '@/contexts/session-context'
+import { ToastProvider } from '@/contexts/toast-context'
 import { theme } from '@/theme'
 
 SplashScreen.preventAutoHideAsync()
@@ -37,7 +38,9 @@ export default function Layout() {
       <StatusBar style="light" />
 
       <SessionProvider>
-        <Slot />
+        <ToastProvider>
+          <Slot />
+        </ToastProvider>
       </SessionProvider>
     </SafeAreaView>
   )

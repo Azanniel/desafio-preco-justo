@@ -1,6 +1,6 @@
 import * as Notifications from 'expo-notifications'
 import { Redirect, Tabs } from 'expo-router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Platform, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -9,6 +9,7 @@ import { HomeIcon } from '@/components/icons/home-icon'
 import { UserIcon } from '@/components/icons/user-icon'
 import { LoadingWithBrand } from '@/components/loading-with-brand'
 import { useSession } from '@/contexts/session-context'
+import { useToast } from '@/contexts/toast-context'
 import { theme } from '@/theme'
 
 Notifications.setNotificationHandler({
@@ -20,7 +21,12 @@ Notifications.setNotificationHandler({
 })
 
 export default function TabsLayout() {
+  const [notification, setNotification] =
+    useState<Notifications.Notification | null>(null)
+
   const { user, isLoading } = useSession()
+  const { toast } = useToast()
+
   const insets = useSafeAreaInsets()
   const tabBarHeight = insets.bottom + 72
 
@@ -46,7 +52,26 @@ export default function TabsLayout() {
     }
 
     registerNotificationsAsync()
+
+    const subscription =
+      Notifications.addNotificationReceivedListener(setNotification)
+
+    return () => subscription.remove()
   }, [user])
+
+  useEffect(() => {
+    if (!notification) {
+      return
+    }
+
+    toast(
+      notification.request.content.title ?? 'Comprar confirmada!',
+      notification.request.content.body ?? 'Parabéns, sua compra foi comprada!',
+      1000 * 5, // 5 seconds
+    )
+
+    setNotification(null)
+  }, [notification, toast])
 
   if (isLoading) {
     return <LoadingWithBrand />

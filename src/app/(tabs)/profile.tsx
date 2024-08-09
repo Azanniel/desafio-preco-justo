@@ -91,6 +91,7 @@ export default function Profile() {
 
           <Button disabled={isLoading} onPress={handleSignOut}>
             <ButtonTitle>Sair</ButtonTitle>
+
             {isLoading && (
               <ActivityIndicator
                 size="small"
