@@ -1,5 +1,7 @@
+import * as Notifications from 'expo-notifications'
 import { Redirect, Tabs } from 'expo-router'
-import { StyleSheet } from 'react-native'
+import { useEffect } from 'react'
+import { Platform, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { BagIcon } from '@/components/icons/bag-icon'
@@ -9,10 +11,42 @@ import { LoadingWithBrand } from '@/components/loading-with-brand'
 import { useSession } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+})
+
 export default function TabsLayout() {
   const { user, isLoading } = useSession()
   const insets = useSafeAreaInsets()
   const tabBarHeight = insets.bottom + 72
+
+  async function registerNotificationsAsync() {
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+      })
+    }
+
+    const { status } = await Notifications.getPermissionsAsync()
+
+    if (status !== 'granted') {
+      await Notifications.requestPermissionsAsync()
+    }
+  }
+
+  useEffect(() => {
+    if (!user) {
+      return
+    }
+
+    registerNotificationsAsync()
+  }, [user])
 
   if (isLoading) {
     return <LoadingWithBrand />

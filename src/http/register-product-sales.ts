@@ -1,3 +1,5 @@
+import * as Notifications from 'expo-notifications'
+
 import { api } from './api-client'
 
 interface RegisterProductSalesRequest {
@@ -14,5 +16,14 @@ export async function registerProductSales(body: RegisterProductSalesRequest) {
       ...body,
       quantity: 1,
     },
+  })
+
+  Notifications.scheduleNotificationAsync({
+    content: {
+      priority: Notifications.AndroidNotificationPriority.MAX,
+      title: 'O seu produto está a caminho! 🥳',
+      body: `🎁 O seu produto ${body.productName} foi confirmado!`,
+    },
+    trigger: { seconds: 5 },
   })
 }
