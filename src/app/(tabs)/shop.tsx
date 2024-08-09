@@ -1,18 +1,46 @@
 import Feather from '@expo/vector-icons/Feather'
 import { Link } from 'expo-router'
+import { useState } from 'react'
 import {
+  ActivityIndicator,
   Dimensions,
-  // FlatList,
+  FlatList,
   Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native'
 
-// import { ProductCard } from '@/components/product-card'
+import { ProductCard } from '@/components/product-card'
+import { getProducts, Product } from '@/http/get-products'
 import { theme } from '@/theme'
 
 export default function Shop() {
+  const [products, setProducts] = useState<Product[]>([])
+  const [page, setPage] = useState(1)
+  const [hasNextPage, setHasNextPage] = useState(true)
+  const [isFetching, setIsFetching] = useState(false)
+
+  async function fetchProducts() {
+    if (isFetching || !hasNextPage) {
+      return
+    }
+
+    setIsFetching(true)
+
+    try {
+      const { data, next, last } = await getProducts({ page })
+
+      setProducts((prevState) => [...prevState, ...data])
+      setPage(next || last)
+      setHasNextPage(Boolean(next))
+    } catch (error) {
+      console.error('Failed to fetch: ', error)
+    } finally {
+      setIsFetching(false)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -34,15 +62,21 @@ export default function Shop() {
       <View style={styles.shop}>
         <Text style={styles.title}>Shop</Text>
 
-        {/* <FlatList
-          data={Array.from({ length: 9 })}
-          keyExtractor={() => Math.random().toString()}
+        <FlatList
+          data={products}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.list}
           columnWrapperStyle={styles.listColumn}
           numColumns={2}
-          renderItem={() => <ProductCard containerCardStyle={styles.product} />}
-        /> */}
+          onEndReached={fetchProducts}
+          onEndReachedThreshold={0.1}
+          renderItem={({ item }) => (
+            <ProductCard containerCardStyle={styles.product} item={item} />
+          )}
+          ListFooterComponent={() =>
+            isFetching && <ActivityIndicator color={theme.colors.purple[500]} />
+          }
+        />
       </View>
     </View>
   )

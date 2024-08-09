@@ -10,7 +10,7 @@ export interface Product {
   featured: boolean
 }
 
-export interface GetFeaturedProductsResponse {
+interface GetFeaturedProductsResponse {
   products: Product[]
 }
 

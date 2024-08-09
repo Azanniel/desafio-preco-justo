@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 
-export function useFetch<T = unknown>(key: string, fetcher: () => Promise<T>) {
+export function useFetch<T = unknown>(
+  key: Array<string | number>,
+  fetcher: () => Promise<T>,
+) {
   const [data, setData] = useState<T | null>(null)
   const [isFetching, setIsFetching] = useState(true)
   const [error, setError] = useState<Error | null>(null)
@@ -17,7 +20,7 @@ export function useFetch<T = unknown>(key: string, fetcher: () => Promise<T>) {
       .finally(() => {
         setIsFetching(false)
       })
-  }, [key])
+  }, [...key])
 
   return { data, isFetching, error }
 }

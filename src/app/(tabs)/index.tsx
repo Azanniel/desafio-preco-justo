@@ -15,7 +15,7 @@ import { theme } from '@/theme'
 
 export default function Home() {
   const { user } = useSession()
-  const { data: products } = useFetch<Product[]>('featured', async () => {
+  const { data: products } = useFetch<Product[]>(['featured'], async () => {
     const { products } = await getFeaturedProducts()
     return products
   })
