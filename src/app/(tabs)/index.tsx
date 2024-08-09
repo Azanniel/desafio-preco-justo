@@ -1,4 +1,5 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { router } from 'expo-router'
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import { AvailableCashInWallet } from '@/components/available-cash-in-wallet'
 import { Brand } from '@/components/brand'
@@ -7,24 +8,31 @@ import { ProductCard } from '@/components/product-card'
 import { PromotionalCard } from '@/components/promotional-card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button, ButtonTitle } from '@/components/ui/button'
+import { useSession } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
 export default function Home() {
+  const { user } = useSession()
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.avatarContainer}>
-          <Avatar>
-            <AvatarFallback>LA</AvatarFallback>
-            <AvatarImage source={{ uri: 'https://github.com/azanniel.png' }} />
-          </Avatar>
+          <Pressable onPress={() => router.push('/profile')}>
+            <Avatar>
+              <AvatarFallback>{user?.name.substring(0, 2)}</AvatarFallback>
+              {user?.avatarUrl && (
+                <AvatarImage source={{ uri: user.avatarUrl }} />
+              )}
+            </Avatar>
+          </Pressable>
 
           <Brand size="sm" />
         </View>
 
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcome}>Olá,</Text>
-          <Text style={styles.username}>Leandro</Text>
+          <Text style={styles.username}>{user?.name.split(' ')[0]}</Text>
           <BellIcon style={{ marginLeft: 'auto' }} />
         </View>
       </View>

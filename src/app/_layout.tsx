@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { SessionProvider } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
 SplashScreen.preventAutoHideAsync()
@@ -34,7 +35,10 @@ export default function Layout() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <StatusBar style="light" />
-      <Slot />
+
+      <SessionProvider>
+        <Slot />
+      </SessionProvider>
     </SafeAreaView>
   )
 }

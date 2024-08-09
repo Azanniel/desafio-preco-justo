@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     fontFamily: theme.fontFamily.regular,
     color: theme.colors.black,
     fontSize: theme.fontSize.base,
+    textTransform: 'uppercase',
   },
 
   image: {

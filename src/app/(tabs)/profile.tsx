@@ -10,9 +10,17 @@ import {
 } from '@/components/menu-action'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button, ButtonTitle } from '@/components/ui/button'
+import { useSession } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
 export default function Profile() {
+  const { user, signOut } = useSession()
+
+  async function handleSignOut() {
+    await signOut()
+    router.push('/sign-in')
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -22,11 +30,13 @@ export default function Profile() {
       >
         <View style={styles.header}>
           <Avatar size={96}>
-            <AvatarFallback>LA</AvatarFallback>
-            <AvatarImage source={{ uri: 'https://github.com/azanniel.png' }} />
+            <AvatarFallback>{user?.name.substring(0, 2)}</AvatarFallback>
+            {user?.avatarUrl && (
+              <AvatarImage source={{ uri: user.avatarUrl }} />
+            )}
           </Avatar>
 
-          <Text style={styles.username}>Leandro Azanniel</Text>
+          <Text style={styles.username}>{user?.name}</Text>
 
           <Button style={styles.updateProfile}>
             <ButtonTitle>Editar Perfil</ButtonTitle>
@@ -72,7 +82,7 @@ export default function Profile() {
             </MenuAction>
           </View>
 
-          <Button onPress={() => router.push('/sign-in')}>
+          <Button onPress={handleSignOut}>
             <ButtonTitle>Sair</ButtonTitle>
           </Button>
         </View>

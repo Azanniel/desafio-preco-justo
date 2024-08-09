@@ -32,6 +32,8 @@ export { ButtonRoot as Button, ButtonTitle }
 
 const styles = StyleSheet.create({
   root: {
+    flexDirection: 'row',
+    gap: 8,
     backgroundColor: theme.colors.purple[500],
     paddingHorizontal: 24,
     paddingVertical: 12,

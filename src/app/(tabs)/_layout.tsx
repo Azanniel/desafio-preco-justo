@@ -1,15 +1,26 @@
-import { Tabs } from 'expo-router'
+import { Redirect, Tabs } from 'expo-router'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { BagIcon } from '@/components/icons/bag-icon'
 import { HomeIcon } from '@/components/icons/home-icon'
 import { UserIcon } from '@/components/icons/user-icon'
+import { LoadingWithBrand } from '@/components/loading-with-brand'
+import { useSession } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
 export default function TabsLayout() {
+  const { user, isLoading } = useSession()
   const insets = useSafeAreaInsets()
   const tabBarHeight = insets.bottom + 72
+
+  if (isLoading) {
+    return <LoadingWithBrand />
+  }
+
+  if (!user) {
+    return <Redirect href="/sign-in" />
+  }
 
   return (
     <Tabs

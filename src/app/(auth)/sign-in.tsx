@@ -1,6 +1,9 @@
 import { Feather } from '@expo/vector-icons'
-import { Link, router } from 'expo-router'
+import { router } from 'expo-router'
+import { useState } from 'react'
 import {
+  ActivityIndicator,
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -15,9 +18,28 @@ import { WalletIcon } from '@/components/icons/wallet-icon'
 import { Button, ButtonTitle } from '@/components/ui/button'
 import { Input, InputRoot } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { useSession } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
 export default function SignIn() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const { isLoading, signIn } = useSession()
+
+  async function handleSignIn() {
+    if (!email || !password) {
+      return Alert.alert('Login', 'Preencha todos os campos.')
+    }
+
+    try {
+      await signIn(email, password)
+      return router.replace('/')
+    } catch (error) {
+      Alert.alert('Login', 'Email ou senha inválidos.')
+    }
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
@@ -39,6 +61,7 @@ export default function SignIn() {
               autoComplete="email"
               autoCapitalize="none"
               keyboardType="email-address"
+              onChangeText={setEmail}
             />
           </InputRoot>
 
@@ -49,23 +72,24 @@ export default function SignIn() {
               autoComplete="password"
               autoCapitalize="none"
               keyboardType="visible-password"
+              onChangeText={setPassword}
             />
           </InputRoot>
 
-          <Button onPress={() => router.push('/')}>
+          <Button disabled={isLoading} onPress={handleSignIn}>
             <ButtonTitle>Entrar</ButtonTitle>
+            {isLoading && (
+              <ActivityIndicator
+                size="small"
+                color={theme.colors.neutral[100]}
+              />
+            )}
           </Button>
 
           <View style={styles.footer}>
-            <Link style={styles.link} href="#">
-              Registrar-se
-            </Link>
-
+            <Text style={styles.link}>Registrar-se</Text>
             <Separator orientation="vertical" />
-
-            <Link style={styles.link} href="#">
-              Resetar senha
-            </Link>
+            <Text style={styles.link}>Resetar senha</Text>
           </View>
         </View>
       </KeyboardAvoidingView>
