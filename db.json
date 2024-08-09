@@ -1,15 +1,15 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Leandro Azanniel",
       "email": "leo.azannielttt@gmail.com",
       "password": "123456",
       "avatarUrl": "https://github.com/azanniel.png",
-      "balance": 50000
+      "balance": 10000
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Hianca Oliveira",
       "email": "hia@mail.com",
       "password": "123456",
@@ -19,7 +19,7 @@
   ],
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Notebook Compaq",
       "description": "Notebook Compaq 14.1P I3-6157U 4GB 120GB SSD Linux - 3012102 Cinza Bivolt",
       "quantity": 42,
@@ -28,7 +28,7 @@
       "featured": true
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Smartphone Samsung Galaxy S21",
       "description": "Smartphone Samsung Galaxy S21 5G 128GB, 8GB RAM, Tela de 6.2” - Preto",
       "quantity": 15,
@@ -37,7 +37,7 @@
       "featured": false
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Smartwatch Apple Watch Series 6",
       "description": "Apple Watch Series 6 GPS, 44mm - Pulseira Esportiva Preta",
       "quantity": 28,
@@ -46,7 +46,7 @@
       "featured": false
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Pendrive Kingston 32GB",
       "description": "Pendrive Kingston DataTraveler 32GB USB 3.0 - Preto",
       "quantity": 120,
@@ -55,7 +55,7 @@
       "featured": false
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Notebook Dell Inspiron",
       "description": "Notebook Dell Inspiron 15 3000, i5-1035G1, 8GB RAM, 256GB SSD - Preto",
       "quantity": 30,
@@ -64,7 +64,7 @@
       "featured": true
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Tablet Samsung Galaxy Tab S7",
       "description": "Tablet Samsung Galaxy Tab S7 128GB, 6GB RAM, Tela de 11” - Preto",
       "quantity": 18,
@@ -73,7 +73,7 @@
       "featured": false
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Monitor LG UltraWide 29''",
       "description": "Monitor LG UltraWide 29'' Full HD, IPS, HDMI - Preto",
       "quantity": 25,
@@ -82,7 +82,7 @@
       "featured": false
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Teclado Mecânico HyperX Alloy",
       "description": "Teclado Mecânico HyperX Alloy FPS Pro, Switch Cherry MX Red - Preto",
       "quantity": 40,
@@ -91,7 +91,7 @@
       "featured": false
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Fone de Ouvido Sony WH-1000XM4",
       "description": "Fone de Ouvido Bluetooth Sony WH-1000XM4 com Cancelamento de Ruído - Preto",
       "quantity": 35,
@@ -100,7 +100,7 @@
       "featured": true
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Mouse Logitech MX Master 3",
       "description": "Mouse Sem Fio Logitech MX Master 3 - Cinza Escuro",
       "quantity": 50,
@@ -109,7 +109,7 @@
       "featured": false
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "Smartphone Xiaomi Mi 11",
       "description": "Smartphone Xiaomi Mi 11 128GB, 8GB RAM, Tela de 6.81” - Azul",
       "quantity": 20,
@@ -118,7 +118,7 @@
       "featured": false
     },
     {
-      "id": 12,
+      "id": "12",
       "name": "Caixa de Som JBL Flip 5",
       "description": "Caixa de Som Bluetooth JBL Flip 5, à Prova d'Água, 20W - Preto",
       "quantity": 60,
@@ -127,7 +127,7 @@
       "featured": true
     },
     {
-      "id": 13,
+      "id": "13",
       "name": "SSD Kingston A2000 500GB",
       "description": "SSD Kingston A2000 500GB NVMe M.2 - Preto",
       "quantity": 75,
@@ -136,7 +136,7 @@
       "featured": false
     },
     {
-      "id": 14,
+      "id": "14",
       "name": "Roteador TP-Link Archer C6",
       "description": "Roteador Wi-Fi Gigabit TP-Link Archer C6 AC1200 - Preto",
       "quantity": 80,
@@ -145,7 +145,7 @@
       "featured": false
     },
     {
-      "id": 15,
+      "id": "15",
       "name": "Smartphone iPhone 12",
       "description": "Smartphone Apple iPhone 12 128GB, Tela de 6.1” - Preto",
       "quantity": 12,
@@ -154,7 +154,7 @@
       "featured": true
     },
     {
-      "id": 16,
+      "id": "16",
       "name": "Webcam Logitech C920",
       "description": "Webcam Logitech C920 HD Pro, Vídeo 1080p - Preto",
       "quantity": 55,
@@ -163,7 +163,7 @@
       "featured": false
     },
     {
-      "id": 17,
+      "id": "17",
       "name": "Notebook Lenovo Ideapad 3",
       "description": "Notebook Lenovo Ideapad 3, Ryzen 5 5500U, 8GB RAM, 256GB SSD - Azul",
       "quantity": 33,
@@ -172,7 +172,7 @@
       "featured": false
     },
     {
-      "id": 18,
+      "id": "18",
       "name": "Headset Razer Kraken",
       "description": "Headset Gamer Razer Kraken Green, Som Surround 7.1 - Verde",
       "quantity": 47,
@@ -181,7 +181,7 @@
       "featured": true
     },
     {
-      "id": 19,
+      "id": "19",
       "name": "Pendrive SanDisk 64GB",
       "description": "Pendrive SanDisk Ultra 64GB USB 3.0 - Preto",
       "quantity": 200,
@@ -190,7 +190,7 @@
       "featured": false
     },
     {
-      "id": 20,
+      "id": "20",
       "name": "Smart TV Samsung 50'' 4K",
       "description": "Smart TV LED 50'' Samsung 4K UHD, HDR, Wi-Fi - Preto",
       "quantity": 22,
@@ -198,5 +198,6 @@
       "preview": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvIligNZDfOgnDAao_VTdOKJC08JuDiDk-gg&s",
       "featured": false
     }
-  ]
+  ],
+  "purchases": []
 }

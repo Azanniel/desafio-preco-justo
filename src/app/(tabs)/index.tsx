@@ -1,5 +1,13 @@
 import { router } from 'expo-router'
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useState } from 'react'
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native'
 
 import { AvailableCashInWallet } from '@/components/available-cash-in-wallet'
 import { Brand } from '@/components/brand'
@@ -11,14 +19,66 @@ import { Button, ButtonTitle } from '@/components/ui/button'
 import { useSession } from '@/contexts/session-context'
 import { useFetch } from '@/hooks/useFetch'
 import { getFeaturedProducts, Product } from '@/http/get-featured-products'
+import { registerProductSales } from '@/http/register-product-sales'
 import { theme } from '@/theme'
 
 export default function Home() {
-  const { user } = useSession()
+  const [productOnPurchase, setProductOnPurchase] = useState<string | null>(
+    null,
+  )
+
+  const { user, updateBalance } = useSession()
+
   const { data: products } = useFetch<Product[]>(['featured'], async () => {
     const { products } = await getFeaturedProducts()
     return products
   })
+
+  async function handlePurchase(product: Product, userId: string) {
+    try {
+      await registerProductSales({
+        userId,
+        productName: product.name,
+        productId: product.id,
+        price: product.price,
+        boughtAt: new Date(),
+      })
+
+      await updateBalance(user!.balance - product.price)
+    } catch {
+      return Alert.alert('Comprar', 'Ocorreu um erro ao realizar a compra')
+    } finally {
+      setProductOnPurchase(null)
+    }
+  }
+
+  function handleConfirmPurchase(productId: string) {
+    const product = products?.find((product) => product.id === productId)
+
+    if (!product || !user) {
+      return
+    }
+
+    if (user.balance < product.price) {
+      return Alert.alert('Comprar', 'Saldo insuficiente para realizar a compra')
+    }
+
+    setProductOnPurchase(productId)
+
+    Alert.alert('Comprar', `Deseja comprar o ${product.name}?`, [
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+        onPress: () => setProductOnPurchase(null),
+      },
+      {
+        text: 'Comprar',
+        onPress: () => {
+          handlePurchase(product, user.id)
+        },
+      },
+    ])
+  }
 
   return (
     <View style={styles.container}>
@@ -69,7 +129,14 @@ export default function Home() {
               contentContainerStyle={styles.scrollFeatured}
             >
               {products?.map((product) => {
-                return <ProductCard key={product.id} item={product} />
+                return (
+                  <ProductCard
+                    key={product.id}
+                    item={product}
+                    isOnPurchase={productOnPurchase === product.id}
+                    onPress={() => handleConfirmPurchase(product.id)}
+                  />
+                )
               })}
             </ScrollView>
           </View>

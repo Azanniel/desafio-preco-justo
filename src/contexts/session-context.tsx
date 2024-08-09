@@ -7,16 +7,19 @@ import {
   useState,
 } from 'react'
 
+import { getProfile } from '@/http/get-profile'
 import { signInWithPassword, User } from '@/http/sign-in-with-password'
+import { updateUserBalance } from '@/http/update-user-balance'
 
 interface SessionContextType {
   user: User | null
   isLoading: boolean
+  updateBalance: (balance: number) => Promise<void>
   signIn: (email: string, password: string) => Promise<void>
   signOut: () => Promise<void>
 }
 
-const SESSION_SECURE_KEY = 'SESSION_USER'
+const SESSION_SECURE_KEY = 'SESSION_USER_ID'
 
 const SessionContext = createContext<SessionContextType>(
   {} as SessionContextType,
@@ -32,10 +35,7 @@ function SessionProvider({ children }: { children: ReactNode }) {
 
       const result = await signInWithPassword({ email, password })
 
-      await SecureStore.setItemAsync(
-        SESSION_SECURE_KEY,
-        JSON.stringify(result.user),
-      )
+      await SecureStore.setItemAsync(SESSION_SECURE_KEY, result.user.id)
 
       setUser(result.user)
     } catch (error) {
@@ -55,13 +55,24 @@ function SessionProvider({ children }: { children: ReactNode }) {
     setIsLoading(false)
   }
 
+  async function updateBalance(balance: number) {
+    if (!user) {
+      return
+    }
+
+    await updateUserBalance(user.id, balance)
+
+    setUser({ ...user, balance })
+  }
+
   useEffect(() => {
     setIsLoading(true)
 
     SecureStore.getItemAsync(SESSION_SECURE_KEY)
-      .then((result) => {
-        if (result) {
-          setUser(JSON.parse(result))
+      .then(async (userId) => {
+        if (userId) {
+          const result = await getProfile(userId)
+          setUser(result.user)
         }
       })
       .finally(() => {
@@ -70,7 +81,9 @@ function SessionProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <SessionContext.Provider value={{ user, isLoading, signIn, signOut }}>
+    <SessionContext.Provider
+      value={{ user, isLoading, signIn, signOut, updateBalance }}
+    >
       {children}
     </SessionContext.Provider>
   )

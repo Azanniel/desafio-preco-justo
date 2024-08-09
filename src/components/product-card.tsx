@@ -1,5 +1,6 @@
 import AntDesign from '@expo/vector-icons/AntDesign'
 import {
+  ActivityIndicator,
   Image,
   StyleProp,
   StyleSheet,
@@ -14,8 +15,10 @@ import { theme } from '@/theme'
 import { Button } from './ui/button'
 
 interface ProductCardProps {
+  isOnPurchase?: boolean
   item: Product
   containerCardStyle?: StyleProp<ViewStyle>
+  onPress?: () => void
 }
 
 export function ProductCard(props: ProductCardProps) {
@@ -43,12 +46,20 @@ export function ProductCard(props: ProductCardProps) {
             </Text>
           </View>
 
-          <Button variant="icon">
-            <AntDesign
-              name="shoppingcart"
-              size={16}
-              color={theme.colors.white}
-            />
+          <Button
+            variant="icon"
+            disabled={props.isOnPurchase}
+            onPress={props.onPress}
+          >
+            {props.isOnPurchase ? (
+              <ActivityIndicator size={16} color={theme.colors.white} />
+            ) : (
+              <AntDesign
+                name="shoppingcart"
+                size={16}
+                color={theme.colors.white}
+              />
+            )}
           </Button>
         </View>
       </View>

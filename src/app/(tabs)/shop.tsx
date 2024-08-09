@@ -3,6 +3,7 @@ import { Link } from 'expo-router'
 import { useState } from 'react'
 import {
   ActivityIndicator,
+  Alert,
   Dimensions,
   FlatList,
   Pressable,
@@ -12,7 +13,9 @@ import {
 } from 'react-native'
 
 import { ProductCard } from '@/components/product-card'
+import { useSession } from '@/contexts/session-context'
 import { getProducts, Product } from '@/http/get-products'
+import { registerProductSales } from '@/http/register-product-sales'
 import { theme } from '@/theme'
 
 export default function Shop() {
@@ -20,6 +23,12 @@ export default function Shop() {
   const [page, setPage] = useState(1)
   const [hasNextPage, setHasNextPage] = useState(true)
   const [isFetching, setIsFetching] = useState(false)
+
+  const [productOnPurchase, setProductOnPurchase] = useState<string | null>(
+    null,
+  )
+
+  const { user, updateBalance } = useSession()
 
   async function fetchProducts() {
     if (isFetching || !hasNextPage) {
@@ -39,6 +48,52 @@ export default function Shop() {
     } finally {
       setIsFetching(false)
     }
+  }
+
+  async function handlePurchase(product: Product, userId: string) {
+    try {
+      await registerProductSales({
+        userId,
+        productName: product.name,
+        productId: product.id,
+        price: product.price,
+        boughtAt: new Date(),
+      })
+
+      await updateBalance(user!.balance - product.price)
+    } catch {
+      return Alert.alert('Comprar', 'Ocorreu um erro ao realizar a compra')
+    } finally {
+      setProductOnPurchase(null)
+    }
+  }
+
+  function handleConfirmPurchase(productId: string) {
+    const product = products?.find((product) => product.id === productId)
+
+    if (!product || !user) {
+      return
+    }
+
+    if (user.balance < product.price) {
+      return Alert.alert('Comprar', 'Saldo insuficiente para realizar a compra')
+    }
+
+    setProductOnPurchase(productId)
+
+    Alert.alert('Comprar', `Deseja comprar o ${product.name}?`, [
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+        onPress: () => setProductOnPurchase(null),
+      },
+      {
+        text: 'Comprar',
+        onPress: () => {
+          handlePurchase(product, user.id)
+        },
+      },
+    ])
   }
 
   return (
@@ -64,6 +119,7 @@ export default function Shop() {
 
         <FlatList
           data={products}
+          keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.list}
           columnWrapperStyle={styles.listColumn}
@@ -71,7 +127,12 @@ export default function Shop() {
           onEndReached={fetchProducts}
           onEndReachedThreshold={0.1}
           renderItem={({ item }) => (
-            <ProductCard containerCardStyle={styles.product} item={item} />
+            <ProductCard
+              containerCardStyle={styles.product}
+              item={item}
+              isOnPurchase={productOnPurchase === item.id}
+              onPress={() => handleConfirmPurchase(item.id)}
+            />
           )}
           ListFooterComponent={() =>
             isFetching && <ActivityIndicator color={theme.colors.purple[500]} />

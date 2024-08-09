@@ -1,7 +1,7 @@
 import { api } from './api-client'
 
 export interface Product {
-  id: number
+  id: string
   name: string
   description: string
   quantity: number

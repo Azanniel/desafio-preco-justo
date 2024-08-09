@@ -1,7 +1,7 @@
 import { api } from './api-client'
 
 export interface User {
-  id: number
+  id: string
   name: string
   email: string
   password: string
@@ -15,7 +15,7 @@ interface SignInWithPasswordRequest {
 }
 
 interface SignInWithPasswordResponse {
-  user: User | null
+  user: User
 }
 
 export async function signInWithPassword({
