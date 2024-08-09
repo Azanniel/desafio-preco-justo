@@ -1,0 +1,166 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Leandro Azanniel",
+      "email": "leo.azannielttt@gmail.com",
+      "password": "123456",
+      "avatarUrl": "https://github.com/azanniel.png",
+      "balance": 50000
+    },
+    {
+      "id": 2,
+      "name": "Hianca Oliveira",
+      "email": "hia@mail.com",
+      "password": "123456",
+      "avatarUrl": null,
+      "balance": 50000
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Notebook Compaq",
+      "description": "Notebook Compaq 14.1P I3-6157U 4GB 120GB SSD Linux - 3012102 Cinza Bivolt",
+      "quantity": 42,
+      "price": 2999,
+      "preview": "https://m.media-amazon.com/images/I/610HEz1AbSL._AC_UF894,1000_QL80_.jpg",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "Smartphone Samsung Galaxy S21",
+      "description": "Smartphone Samsung Galaxy S21 5G 128GB, 8GB RAM, Tela de 6.2” - Preto",
+      "quantity": 15,
+      "price": 3999,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "name": "Smartwatch Apple Watch Series 6",
+      "description": "Apple Watch Series 6 GPS, 44mm - Pulseira Esportiva Preta",
+      "quantity": 28,
+      "price": 2799,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "name": "Pendrive Kingston 32GB",
+      "description": "Pendrive Kingston DataTraveler 32GB USB 3.0 - Preto",
+      "quantity": 120,
+      "price": 69,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "name": "Notebook Dell",
+      "description": "Notebook Dell Inspiron 15 3000, i5-1035G1, 8GB RAM, 256GB SSD - Preto",
+      "quantity": 30,
+      "price": 4299,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "name": "Tablet Samsung Galaxy Tab S7",
+      "description": "Tablet Samsung Galaxy Tab S7 128GB, 6GB RAM, Tela de 11” - Preto",
+      "quantity": 18,
+      "price": 3899,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 7,
+      "name": "Monitor LG UltraWide 29''",
+      "description": "Monitor LG UltraWide 29'' Full HD, IPS, HDMI - Preto",
+      "quantity": 25,
+      "price": 1299,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 8,
+      "name": "Teclado Mecânico HyperX Alloy",
+      "description": "Teclado Mecânico HyperX Alloy FPS Pro, Switch Cherry MX Red - Preto",
+      "quantity": 40,
+      "price": 649,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 9,
+      "name": "Fone de Ouvido Sony WH-1000XM4",
+      "description": "Fone de Ouvido Bluetooth Sony WH-1000XM4 com Cancelamento de Ruído - Preto",
+      "quantity": 35,
+      "price": 1699,
+      "preview": "https://picsum.photos/200",
+      "featured": true
+    },
+    {
+      "id": 10,
+      "name": "Mouse Logitech MX Master 3",
+      "description": "Mouse Sem Fio Logitech MX Master 3 - Cinza Escuro",
+      "quantity": 50,
+      "price": 479,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 11,
+      "name": "Smartphone Xiaomi Mi 11",
+      "description": "Smartphone Xiaomi Mi 11 128GB, 8GB RAM, Tela de 6.81” - Azul",
+      "quantity": 20,
+      "price": 3899,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 12,
+      "name": "Caixa de Som JBL Flip 5",
+      "description": "Caixa de Som Bluetooth JBL Flip 5, à Prova d'Água, 20W - Preto",
+      "quantity": 60,
+      "price": 599,
+      "preview": "https://picsum.photos/200",
+      "featured": true
+    },
+    {
+      "id": 13,
+      "name": "SSD Kingston A2000 500GB",
+      "description": "SSD Kingston A2000 500GB NVMe M.2 - Preto",
+      "quantity": 75,
+      "price": 449,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 14,
+      "name": "Roteador TP-Link Archer C6",
+      "description": "Roteador Wi-Fi Gigabit TP-Link Archer C6 AC1200 - Preto",
+      "quantity": 80,
+      "price": 299,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    },
+    {
+      "id": 15,
+      "name": "Smartphone iPhone 12",
+      "description": "Smartphone Apple iPhone 12 128GB, Tela de 6.1” - Preto",
+      "quantity": 12,
+      "price": 5699,
+      "preview": "https://picsum.photos/200",
+      "featured": true
+    },
+    {
+      "id": 16,
+      "name": "Webcam Logitech C920",
+      "description": "Webcam Logitech C920 HD Pro, Vídeo 1080p - Preto",
+      "quantity": 55,
+      "price": 499,
+      "preview": "https://picsum.photos/200",
+      "featured": false
+    }
+  ]
+}

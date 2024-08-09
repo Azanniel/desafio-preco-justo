@@ -47,8 +47,12 @@ function SessionProvider({ children }: { children: ReactNode }) {
   }
 
   async function signOut() {
+    setIsLoading(true)
+
     await SecureStore.deleteItemAsync(SESSION_SECURE_KEY)
+
     setUser(null)
+    setIsLoading(false)
   }
 
   useEffect(() => {

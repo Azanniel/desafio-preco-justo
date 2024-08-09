@@ -9,10 +9,16 @@ import { PromotionalCard } from '@/components/promotional-card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button, ButtonTitle } from '@/components/ui/button'
 import { useSession } from '@/contexts/session-context'
+import { useFetch } from '@/hooks/useFetch'
+import { getFeaturedProducts, Product } from '@/http/get-featured-products'
 import { theme } from '@/theme'
 
 export default function Home() {
   const { user } = useSession()
+  const { data: products } = useFetch<Product[]>('featured', async () => {
+    const { products } = await getFeaturedProducts()
+    return products
+  })
 
   return (
     <View style={styles.container}>
@@ -62,15 +68,14 @@ export default function Home() {
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.scrollFeatured}
             >
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
+              {products?.map((product) => {
+                return <ProductCard key={product.id} item={product} />
+              })}
             </ScrollView>
           </View>
 
           <View style={{ alignItems: 'center', marginBottom: 72 }}>
-            <Button>
+            <Button onPress={() => router.push('/shop')}>
               <ButtonTitle>Ver todos os produtos</ButtonTitle>
             </Button>
           </View>
@@ -135,6 +140,6 @@ const styles = StyleSheet.create({
     gap: 16,
     paddingHorizontal: 24,
     paddingVertical: 16,
-    alignItems: 'center',
+    alignItems: 'stretch',
   },
 })

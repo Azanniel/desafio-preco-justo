@@ -1,6 +1,0 @@
-{
-  "users": [
-    { "id": 1, "name": "Leandro Azanniel", "email": "leo.azannielttt@gmail.com", "password": "123456", "avatarUrl": "https://github.com/azanniel.png", "balance": 50000 },
-    { "id": 2, "name": "Hianca Oliveira", "email": "hia@mail.com", "password": "123456", "avatarUrl": null, "balance": 50000 }
-  ]
-}

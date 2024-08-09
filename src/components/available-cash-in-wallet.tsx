@@ -2,6 +2,7 @@ import Feather from '@expo/vector-icons/Feather'
 import { Link } from 'expo-router'
 import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
 
+import { useSession } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
 import { WalletIcon } from './icons/wallet-icon'
@@ -10,6 +11,8 @@ import { Separator } from './ui/separator'
 const dimensions = Dimensions.get('window')
 
 export function AvailableCashInWallet() {
+  const { user } = useSession()
+
   return (
     <View style={styles.container}>
       <View style={styles.item}>
@@ -20,7 +23,9 @@ export function AvailableCashInWallet() {
           height={24}
         />
 
-        <Text style={styles.title}>R$ 50.000</Text>
+        <Text style={styles.title}>
+          R$ {user?.balance.toLocaleString('pt-BR')}
+        </Text>
       </View>
 
       <View style={{ marginLeft: 'auto', marginRight: 16 }}>

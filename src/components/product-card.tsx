@@ -8,11 +8,13 @@ import {
   ViewStyle,
 } from 'react-native'
 
+import { Product } from '@/http/get-featured-products'
 import { theme } from '@/theme'
 
 import { Button } from './ui/button'
 
 interface ProductCardProps {
+  item: Product
   containerCardStyle?: StyleProp<ViewStyle>
 }
 
@@ -22,19 +24,23 @@ export function ProductCard(props: ProductCardProps) {
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={{ uri: 'https://picsum.photos/200' }}
-          alt=""
+          source={{ uri: props.item.preview }}
+          alt={props.item.description}
         />
       </View>
 
       <View style={styles.info}>
-        <Text style={styles.title}>Notebook L24</Text>
-        <Text style={styles.quantity}>40 unidades</Text>
+        <Text numberOfLines={2} style={styles.title}>
+          {props.item.name}
+        </Text>
+        <Text style={styles.quantity}>{props.item.quantity} unidades</Text>
 
         <View style={styles.footer}>
           <View style={styles.priceContainer}>
             <Text style={styles.prefix}>R$</Text>
-            <Text style={styles.price}>4.000</Text>
+            <Text style={styles.price}>
+              {props.item.price.toLocaleString('pt-BR')}
+            </Text>
           </View>
 
           <Button variant="icon">

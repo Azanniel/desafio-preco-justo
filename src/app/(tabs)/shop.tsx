@@ -2,14 +2,14 @@ import Feather from '@expo/vector-icons/Feather'
 import { Link } from 'expo-router'
 import {
   Dimensions,
-  FlatList,
+  // FlatList,
   Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native'
 
-import { ProductCard } from '@/components/product-card'
+// import { ProductCard } from '@/components/product-card'
 import { theme } from '@/theme'
 
 export default function Shop() {
@@ -34,7 +34,7 @@ export default function Shop() {
       <View style={styles.shop}>
         <Text style={styles.title}>Shop</Text>
 
-        <FlatList
+        {/* <FlatList
           data={Array.from({ length: 9 })}
           keyExtractor={() => Math.random().toString()}
           showsVerticalScrollIndicator={false}
@@ -42,7 +42,7 @@ export default function Shop() {
           columnWrapperStyle={styles.listColumn}
           numColumns={2}
           renderItem={() => <ProductCard containerCardStyle={styles.product} />}
-        />
+        /> */}
       </View>
     </View>
   )

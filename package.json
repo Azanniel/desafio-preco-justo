@@ -9,7 +9,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "server": "json-server --watch ./src/storage/db.json --port 3333",
+    "server": "json-server --watch ./db.json --port 3333",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },

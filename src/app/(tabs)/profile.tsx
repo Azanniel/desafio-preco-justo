@@ -1,7 +1,14 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
 import { router } from 'expo-router'
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
+import {
+  ActivityIndicator,
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native'
 
 import {
   MenuAction,
@@ -14,7 +21,7 @@ import { useSession } from '@/contexts/session-context'
 import { theme } from '@/theme'
 
 export default function Profile() {
-  const { user, signOut } = useSession()
+  const { isLoading, user, signOut } = useSession()
 
   async function handleSignOut() {
     await signOut()
@@ -82,8 +89,14 @@ export default function Profile() {
             </MenuAction>
           </View>
 
-          <Button onPress={handleSignOut}>
+          <Button disabled={isLoading} onPress={handleSignOut}>
             <ButtonTitle>Sair</ButtonTitle>
+            {isLoading && (
+              <ActivityIndicator
+                size="small"
+                color={theme.colors.neutral[100]}
+              />
+            )}
           </Button>
         </View>
       </ScrollView>
