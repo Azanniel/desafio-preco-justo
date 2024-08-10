@@ -8,6 +8,7 @@ import { WalletIcon } from './icons/wallet-icon'
 export function LoadingWithBrand() {
   return (
     <View
+      testID="loading-with-brand"
       style={{
         flex: 1,
         justifyContent: 'center',
@@ -17,7 +18,12 @@ export function LoadingWithBrand() {
     >
       <WalletIcon width={120} height={120} />
       <Brand />
-      <ActivityIndicator size="large" color={theme.colors.white} />
+
+      <ActivityIndicator
+        testID="activity-indicator"
+        size="large"
+        color={theme.colors.white}
+      />
     </View>
   )
 }
